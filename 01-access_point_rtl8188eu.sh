@@ -5,8 +5,18 @@
 # -------------------- install kernel headers to compile rtl8188eufw.bin ------------------
 # Kali specific 
 # echo "deb http://http.kali.org/ /kali main contrib non-free" >> /etc/apt/sources.list 
+# Regular Repositories for kali 2.0
+# deb http://http.kali.org/kali sana main non-free contrib
+# deb http://security.kali.org/kali-security sana/updates main contrib non-free
+# Source repositories
+# deb-src http://http.kali.org/kali sana main non-free contrib
+# deb-src http://security.kali.org/kali-security sana/updates main contrib non-free
+echo "REMOVE '#' in /etc/apt/souces.list (for linux headers)"
+
 apt-get update
-apt-get install linux-headers-686-pae build-essential linux-headers-generic git
+apt-get install linux-headers-$(uname -r) git build-essential
+# apt-get install linux-headers-686-pae build-essential linux-headers-generic git 
+
 
 apt-get install hostapd
 sudo service hostapd stop
