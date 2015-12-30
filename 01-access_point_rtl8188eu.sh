@@ -34,7 +34,7 @@ cd -
 
 cp /etc/hostapd/hostapd.conf /etc/hostapd/hostapd.conf.bak
 
-/bin/cat >> /etc/network/hostapd.conf << hostapd_conf 
+/bin/cat >> /etc/hostapd/hostapd.conf << hostapd_conf 
 interface=wlan0
 driver=rtl871xdrv 
 ssid=APAP
