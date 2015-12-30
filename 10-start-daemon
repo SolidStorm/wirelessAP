@@ -1,0 +1,9 @@
+# Start DHCP/DNS server
+service dnsmasq start
+service dnsmasq restart
+
+service hostapd start
+service hostapd restart
+
+service dnsmasq status
+service hostapd start
