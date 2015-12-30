@@ -36,7 +36,7 @@ cp /etc/hostapd/hostapd.conf /etc/hostapd/hostapd.conf.bak
 
 /bin/cat >> /etc/hostapd/hostapd.conf << hostapd_conf 
 interface=wlan0
-driver=rtl871xdrv 
+#driver=rtl871xdrv 
 ssid=APAP
 hw_mode=g
 channel=11
@@ -53,19 +53,21 @@ macaddr_acl=0
 hostapd_conf
 
 
-# ----------- set default configuration location of the service
-# vi /etc/default/hostapd
-cat /etc/default/hostapd >> DAEMON_CONF="/etc/hostapd/hostapd.conf"
-
-
 # -------------------- comple Driver rtl8188eufw.bin ------------------
 cd rtl8188eu/
 make
 # ls -la 8188eu.ko
 # install -p -m 644 8188eu.ko  /lib/modules/3.18.0-kali3-686-pae/kernel/drivers/net/wireless
+# or
 make install 
 
+# ----------- set default configuration location of the cofiguration file used by the daemon
+echo DAEMON_CONF="/etc/hostapd/hostapd.conf" >> /etc/default/hostapd
+
+echo "DONE"
+
 echo "Modify you wifi encryption key in /etc/hostapd/hostapd.conf"
-echo "REBOOT and execute the folowing command to test the service"
+echo "REBOOT if needed and execute the folowing command to test the configuration file : "
 echo "/usr/sbin/hostapd -dd /etc/hostapd/hostapd.conf"
+
 # ok !
