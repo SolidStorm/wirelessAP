@@ -2,6 +2,12 @@
 
 # http://linuxforums.org.uk/index.php?topic=11261.0
 
+# -------------------- install kernel headers to compile rtl8188eufw.bin ------------------
+# Kali specific 
+# echo "deb http://http.kali.org/ /kali main contrib non-free" >> /etc/apt/sources.list 
+apt-get update
+apt-get install linux-headers-686-pae build-essential linux-headers-generic git
+
 apt-get install hostapd
 sudo service hostapd stop
 
@@ -18,7 +24,7 @@ cd -
 
 cp /etc/hostapd/hostapd.conf /etc/hostapd/hostapd.conf.bak
 
-/bin/cat >> /etc/network/interfaces << hostapd_conf 
+/bin/cat >> /etc/network/hostapd.conf << hostapd_conf 
 interface=wlan0
 driver=rtl871xdrv 
 ssid=APAP
@@ -41,12 +47,6 @@ hostapd_conf
 # vi /etc/default/hostapd
 cat /etc/default/hostapd >> DAEMON_CONF="/etc/hostapd/hostapd.conf"
 
-
-# -------------------- install kernel headers to compile rtl8188eufw.bin ------------------
-# Kali specific 
-# echo "deb http://http.kali.org/ /kali main contrib non-free" >> /etc/apt/sources.list 
-apt-get update
-apt-get install linux-headers-686-pae
 
 # -------------------- comple Driver rtl8188eufw.bin ------------------
 cd rtl8188eu/
